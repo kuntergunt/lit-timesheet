@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON to Lit HTML Table</title>
+  <script type="module" src="/src/lit-html-table.ts"></script>
+</head>
+
+<body>
+  <lit-html-table editable >
+    <span slot="title" style="color: red;">Title</span> 
+    <script type="application/json">
+      [
+        {
+          "id": "0",
+          "name": "First Item",
+          "date":"1.2.2021",
+          "time":"11:35"
+        }
+      ]
+    </script>
+  </lit-html-table>
+
+  <script>
+    const elem = document.querySelector('lit-html-table');
+    elem.addEventListener('input-cell', (e) => {
+      // Index and data for the individual cell
+      const { index, data } = e.detail;
+      // New array of json items
+      const values = elem.values; 
+      console.log(values);
+      console.log(index + ' ' + data);
+
+    }, false);
+  </script>
+</body>
+
+</html>
